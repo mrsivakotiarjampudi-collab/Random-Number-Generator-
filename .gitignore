@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+frontend/.expo/
+frontend/.expo-shared/
+
+# Cache
+.metro-cache/
+frontend/.metro-cache/
+*.cache
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test outputs
+test_reports/
+.emergent/
+
+# Environment - keep structure but exclude sensitive data
+# We'll keep .env files for deployment reference
+
+# Temporary files
+*.tmp
+*.temp
