@@ -138,21 +138,31 @@ export default function Home() {
                 style={styles.seedInput}
                 value={periodNumber}
                 onChangeText={(text) => {
-                  setPeriodNumber(text);
+                  // Only allow numbers
+                  const numericText = text.replace(/[^0-9]/g, '');
+                  setPeriodNumber(numericText);
                   // Clear results when period number is cleared
-                  if (text.trim() === '') {
+                  if (numericText.trim() === '') {
                     setRandomNumber(null);
                     setCategory('');
                   }
                 }}
-                placeholder=""
+                placeholder="Enter period number"
                 placeholderTextColor="#999999"
-                keyboardType="numeric"
+                keyboardType="number-pad"
                 returnKeyType="done"
                 editable={!loading}
                 autoCapitalize="none"
                 autoCorrect={false}
-                selectTextOnFocus
+                autoComplete="off"
+                selectTextOnFocus={true}
+                maxLength={10}
+                onSubmitEditing={() => {
+                  Keyboard.dismiss();
+                  if (periodNumber.trim() !== '') {
+                    generateNumber();
+                  }
+                }}
               />
               <Text style={styles.noteText}>Note: Please enter last 3 digit number</Text>
             </View>
@@ -268,11 +278,12 @@ const styles = StyleSheet.create({
     borderColor: '#2196F3',
     borderRadius: 12,
     paddingHorizontal: 16,
-    paddingVertical: 14,
-    fontSize: 16,
+    paddingVertical: 16,
+    fontSize: 18,
     color: '#1A1A1A',
-    minHeight: 52,
-    outlineStyle: 'none',
+    minHeight: 56,
+    textAlign: 'center',
+    fontWeight: '600',
   },
   noteText: {
     fontSize: 13,
