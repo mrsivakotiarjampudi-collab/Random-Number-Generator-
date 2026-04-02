@@ -12,6 +12,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Constants from 'expo-constants';
@@ -122,9 +123,15 @@ export default function Home() {
       <KeyboardAvoidingView 
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
       >
-        <Pressable style={styles.flex} onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          <Pressable style={styles.flex} onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
             {/* Header */}
             <View style={styles.header}>
               <Text style={styles.title}>Random Number Generator</Text>
@@ -227,6 +234,7 @@ export default function Home() {
         </View>
           </View>
         </Pressable>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -239,6 +247,9 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
   },
   container: {
     flex: 1,
