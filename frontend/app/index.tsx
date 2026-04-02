@@ -32,6 +32,28 @@ export default function Home() {
   const [error, setError] = useState<string>('');
   const [scaleAnim] = useState(new Animated.Value(0));
   const [periodNumber, setPeriodNumber] = useState<string>('');
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
+  // Listen for keyboard events
+  React.useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setIsKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setIsKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
 
   const generateNumber = async () => {
     setLoading(true);
@@ -174,7 +196,8 @@ export default function Home() {
               <Text style={styles.noteText}>Note: Please enter last 3 digit number</Text>
             </View>
 
-            {/* Main Display Area */}
+            {/* Main Display Area - Hide when keyboard is visible */}
+            {!isKeyboardVisible && (
             <View style={styles.displayContainer}>
           {randomNumber !== null ? (
             <Animated.View 
@@ -198,6 +221,7 @@ export default function Home() {
             </View>
           )}
         </View>
+            )}
 
         {/* Error Message */}
         {error ? (
