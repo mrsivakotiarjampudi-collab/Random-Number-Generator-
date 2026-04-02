@@ -107,6 +107,13 @@ export default function Home() {
         useNativeDriver: true,
       }).start();
       
+      // Hide result after 1 second
+      setTimeout(() => {
+        setRandomNumber(null);
+        setCategory('');
+        scaleAnim.setValue(0);
+      }, 1000);
+      
     } catch (err) {
       setError('Failed to generate number. Please try again.');
       console.error('Error generating number:', err);
