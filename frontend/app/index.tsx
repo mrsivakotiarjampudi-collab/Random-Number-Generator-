@@ -303,14 +303,13 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   displayContainer: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 24,
+    marginVertical: 16,
+    minHeight: 200,
   },
   resultContainer: {
-    width: 280,
-    height: 280,
+    width: 220,
+    height: 220,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -327,7 +326,7 @@ const styles = StyleSheet.create({
     }),
   },
   categoryDisplayText: {
-    fontSize: 72,
+    fontSize: 56,
     fontWeight: 'bold',
     textAlign: 'center',
   },
